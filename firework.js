@@ -1,13 +1,13 @@
 function Firework() {
 
     this.hue = random(255);
-    this.firework = new Particle(random(windowWidth), 
-                                 windowHeight, 
-                                 this.hue, 
+    this.firework = new Particle(random(window.innerWidth),
+                                 window.innerHeight,
+                                 60,
                                  true);
     this.exploded = false;
     this.particles = [];
-    this.hue 
+    this.hue
 
     this.burned = function() {
         if(this.exploded && this.particles.length === 0) {
@@ -17,8 +17,8 @@ function Firework() {
     }
 
     this.explode = function() {
-        for(var i = 0; i < 100; i++) {
-            var p = new Particle(this.firework.pos.x, 
+        for(let i = 0; i < 100; i++) {
+            let p = new Particle(this.firework.pos.x,
                                  this.firework.pos.y,
                                  this.hue,
                                  false);
@@ -39,7 +39,7 @@ function Firework() {
             }
         }
 
-        for(var i = this.particles.length; i > 0; i--) {
+        for(let i = this.particles.length; i > 0; i--) {
             this.particles[i - 1].applyForce(gravity);
             this.particles[i - 1].update();
             if (this.particles[i - 1].faded_out()) {
@@ -51,8 +51,8 @@ function Firework() {
     this.show = function() {
         if (!this.exploded) {
             this.firework.show();
-        } 
-        for(var i = 0; i < this.particles.length; i++) {
+        }
+        for(let i = 0; i < this.particles.length; i++) {
             this.particles[i].show();
         }
     }

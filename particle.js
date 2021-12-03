@@ -36,11 +36,11 @@ function Particle(x, y, hue, firework) {
     this.show = function() {
         colorMode(HSB);
         if (!this.firework) {
-            strokeWeight(2);
+            strokeWeight(4);
             stroke(this.hue, 255, 255, this.brigthness);
         } else {
-            strokeWeight(4);
-            stroke(this.hue, 255, 255);
+            strokeWeight(2);
+            stroke(this.hue, 0, 100);
         }
         point(this.pos.x, this.pos.y);
     }

@@ -1,41 +1,22 @@
-var fireworks = [];
-var stars = [];
-var gravity;
+let fireworks = [];
+let stars = [];
+let gravity;
 
 function setup() {
-
-	createCanvas(windowWidth, windowHeight);
-	// background(0);
-	stroke(255);
+	createCanvas(window.innerWidth, window.innerHeight);
 	colorMode(HSB);
-
 	// put setup code here
-	gravity = createVector(0, 0.2);	
-
+	gravity = createVector(0, 0.2);
 	for (let i = 0; i < 80; i++) {
 		stars.push(new Star());
 	}
-
 }
 
 
 function draw() {
 
-	// colorMode(RGB);
-	background(0, 0, 0, 20);
-	// put drawing code here
-	// 10% chance of having a firework per frame
-	if (random(1) < 0.10) {
-		fireworks.push(new Firework());
-	}
-	for(var i = fireworks.length; 0 < i; i--) {
-		fireworks[i - 1].update();
-		fireworks[i - 1].show();
-		if (fireworks[i - 1].burned()) {
-			fireworks.splice(i , 1);
-		}
-	}
-	for(var i = stars.length; 0 < i; i--) {
+	colorMode(RGB);
+	for(let i = stars.length; 0 < i; i--) {
 		stars[i - 1].update();
 		stars[i - 1].show();
 		if (stars[i - 1].out_of_scope()) {
@@ -43,4 +24,22 @@ function draw() {
 			stars.push(new Star());
 		}
 	}
+	background(0, 0, 0, 25);
+	// put drawing code here
+	// 10% chance of having a firework per frame
+	if (random(1) < 0.10) {
+		fireworks.push(new Firework());
+	}
+	for(let i = fireworks.length; 0 < i; i--) {
+		fireworks[i - 1].update();
+		fireworks[i - 1].show();
+		if (fireworks[i - 1].burned()) {
+			fireworks.splice(i , 1);
+		}
+	}
+}
+
+function windowResized() {
+	resizeCanvas(window.innerWidth, window.innerHeight);
+	background(0);
 }

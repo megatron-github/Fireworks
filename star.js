@@ -1,12 +1,12 @@
 function Star() {
     
     this.pos = createVector(random(windowWidth), random(windowHeight));
-    this.speed = createVector(1, 1);
+    this.speed = createVector(0.002, 0.002);
     this.brigthness = random(100, 200);
 
     this.out_of_scope = function() {
-        if (this.pos.x >= windowWidth && 
-            this.pos.y >= windowHeight) {
+        if (this.pos.x > windowWidth && 
+            this.pos.y >=windowHeight) {
                 return true;
         }
         return false
